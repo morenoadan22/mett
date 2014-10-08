@@ -17,11 +17,11 @@
 
 <p>To sign-up or cancel for an exam, please contact the Department Office by email: <a href="mailto:mathhelp@sciences.sdsu.edu">mathhelp@sciences.sdsu.edu</a>. Include your full name, mailing address, phone number, REDID number, email address, and title of exam.</p>
 
-<p>The master&#8217;s exams are offered two times a year before the start of the Fall semester and before the start of the Spring semester. The exams are offered on three consecutive weekends. Each exam is only offer once per semester. Please refer to the <a href="http://www.cs.sdsu.edu/grad/exams/schedule.html">online schedule</a> for dates, times, and exam locations.</p>
+<p>The master&#8217;s exams are offered two times a year before the start of the Fall semester and before the start of the Spring semester. The exams are offered on three consecutive weekends. Each exam is only offer once per semester. Please refer to the <a href="http://www.cs.sdsu.edu/master-exams/schedule/">online schedule</a> for dates, times, and exam locations.</p>
 
 <p>When exams have been graded, you will be notified via email. Please do not contact the Department Office inquiring about your grades. Remember the test number assigned to you!</p>
 
-<p>For more information about the Master&#8217;s exams contact a <a href="http://www.cs.sdsu.edu/grad/advisors.html">graduate student advisor</a>.</p>
+<p>For more information about the Master&#8217;s exams contact a <a href="http://www.cs.sdsu.edu/cs-graduate-advisers/">graduate student advisor</a>.</p>
 
 <p>Upon successfully completing and passing three requisite Master&#8217;s exams, and</p>
 <ul type="disc">
