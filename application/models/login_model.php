@@ -439,6 +439,9 @@ class LoginModel
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_FIELD_EMPTY;
         } elseif (strlen($_POST['user_email']) > 64) {
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_TOO_LONG;
+        } elseif (strlen($_POST['red_id']) != 9 ) {
+            $_SESSION["feedback_negative"][] = "Invalid Red ID"; // Enum
+	// Need to also add checks for first middle and last names
         } elseif (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_DOES_NOT_FIT_PATTERN;
         } elseif (!empty($_POST['user_name'])
@@ -455,6 +458,10 @@ class LoginModel
             // clean the input
             $user_name = strip_tags($_POST['user_name']);
             $user_email = strip_tags($_POST['user_email']);
+            $red_id = strip_tags($_POST['red_id']);
+            $first_name = strip_tags($_POST['first_name']);
+            $middle_name = strip_tags($_POST['middle_name']);
+            $last_name = strip_tags($_POST['last_name']);
 
             // crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
             // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
@@ -487,15 +494,20 @@ class LoginModel
             $user_creation_timestamp = time();
 
             // write new users data into database
-            $sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_creation_timestamp, user_activation_hash, user_provider_type)
-                    VALUES (:user_name, :user_password_hash, :user_email, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
+            $sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_creation_timestamp, user_activation_hash, user_provider_type, red_id, first_name, middle_name, last_name)
+                    VALUES (:user_name, :user_password_hash, :user_email, :user_creation_timestamp, :user_activation_hash, :user_provider_type, :red_id, :first_name, :middle_name, :last_name)";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
                                   ':user_password_hash' => $user_password_hash,
                                   ':user_email' => $user_email,
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
-                                  ':user_provider_type' => 'DEFAULT'));
+                                  ':user_provider_type' => 'DEFAULT',
+                                  ':red_id' => $red_id,
+                                  ':first_name' => $first_name,
+                                  ':middle_name' => $middle_name,
+                                  ':last_name' => $last_name
+				));
             $count =  $query->rowCount();
             if ($count != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_CREATION_FAILED;

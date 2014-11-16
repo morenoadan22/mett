@@ -268,7 +268,7 @@ label {
 }
 
 input {
-    display: block;
+/*    display: block;*/
     margin-bottom: 15px;
     min-width: 200px;
     padding: 10px;
@@ -342,8 +342,8 @@ a.facebook-register-button:hover {
 
 .register-default-box,
 .register-facebook-box {
-    display: inline-block;
-    width: 300px;
+/*  display: inline-block;*/
+    width: 800px;
     vertical-align: top;
 }
 
@@ -426,4 +426,14 @@ table.overview-table td.avatar {
 .avatar img {
     width: 44px;
     height: 44px;
+}
+
+#first_name {
+  display: inline;
+}
+#middle_name {
+  display: inline;
+}
+#last_name {
+  display: inline;
 }
