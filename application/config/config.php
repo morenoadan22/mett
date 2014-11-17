@@ -92,7 +92,7 @@ define('COOKIE_DOMAIN', '.ec2-54-183-228-165.us-west-1.compute.amazonaws.com');
  */
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'login');
+define('DB_NAME', 'mett');
 define('DB_USER', 'root');
 define('DB_PASS', 'mypw');
 

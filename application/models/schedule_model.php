@@ -16,41 +16,119 @@ class ScheduleModel
     }
 
     /**
-     * Getter for all exams (exams are an implementation of example data, in a real world application this
-     * would be data that the user has created)
-     * @return array an array with several objects (the results)
+     * Gets the number of available seats for an upcoming exam.
+     * 
+     * @param int $examId the exam schedule id
+     * @return the number of seats that are available for that particular exam
      */
-    public function getAllSchedules()
+    public function getAvailableSeats($examId)
     {
-        $sql = "SELECT user_id, exam_id, exam_text FROM exams WHERE user_id = :user_id";
-        $query = $this->db->prepare($sql);
-        $query->execute(array(':user_id' => $_SESSION['user_id']));
-
-        // fetchAll() is the PDO method that gets all result rows
-        return $query->fetchAll();
-    }
-
+    	$studentCount = $this->getStudentCount($examId);
+    	
+    	$sql = "SELECT seats FROM examSchedule WHERE id = :exam_schedule";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':exam_schedule' => $examId));
+    	
+    	return $query->fetch() - $studentCount;    	
+    }   
+    
+    
     /**
      * Getter for a single exam
      * @param int $exam_id id of the specific exam
      * @return object a single object (the result)
      */
-    public function getSchedule($exam_id)
+    public function getExamSchedule($exam_id)
     {
-        $sql = "SELECT user_id, exam_id, exam_text FROM exams WHERE user_id = :user_id AND exam_id = :exam_id";
-        $query = $this->db->prepare($sql);
-        $query->execute(array(':user_id' => $_SESSION['user_id'], ':exam_id' => $exam_id));
-
-        // fetch() is the PDO method that gets a single result
-        return $query->fetch();
+    	$sql = "SELECT id, examType, location, seats, date, time, semeseter, year AND exam_id = :exam_id";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':exam_id' => $exam_id));
+    
+    	// fetch() is the PDO method that gets a single result
+    	return $query->fetch();
     }
+    
+    
+    /**
+     * Gets the student count for an upcoming exam.
+     * 
+     * @param int $examId the exam schedule id
+     * @return the int count of studentexam records linked to an exam.
+     */
+    public function getStudentCount($examId)
+    {
+    	$sql = "SELECT count(*) FROM studentExam WHERE examSchedule = :exam_schedule";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':exam_schedule' => $examId));
+    	
+    	return $query->fetch();
+    }
+    
+    
+    /**
+     * Getter for the upcoming exams for a particular semester and year
+     * 
+     * @param string $semester
+     * @param int $year
+     * @return array an array with several objects (the results)
+     */
+    public function getUpcomingExams($semester, $year)
+    {
+    	$sql = "SELECT * FROM examSchedule WHERE semester = :semester AND year = :year";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':semester' => $semester, ':year' => $year));
+    	
+    	return $query->fetchAll();
+    }
+    
+    
+    /**
+     * Getter for the upcoming exams for a particular semester and year by exam type.
+     * @param string $semester
+     * @param int $year
+     * @param int $examType
+     * @return array an array with several objects (the query results)
+     */
+    public function getUpcomingExams($semester, $year, $examType)
+    {
+    	$sql = "SELECT * FROM examSchedule WHEERE semester = :semester AND year = :year AND examType = :exam_type";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':semester' => $semester, ':year' => $year, ':exam_type' => $examType));
+    	
+    	return $query->fetchAll();    	
+    }
+    
+    /**
+     * Deletes a specific exam
+     * @param int $examId
+     * @return boolean feedback (was the exam deleted properly ?)
+     */
+    public function deleteExam($examId)
+    {
+    	$sql = "DELETE FROM examSchedule WHERE examId = :examId";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':exam_id' => $exam_id));
+    	
+    	$count =  $query->rowCount();
+    	
+    	if ($count == 1) {
+    		return true;
+    	} else {
+    		$_SESSION["feedback_negative"][] = FEEDBACK_NOTE_DELETION_FAILED;
+    	}
+    	// default return
+    	return false;
+    }
+        
+     
+
 
     /**
      * Setter for a exam (create)
-     * @param string $exam_text exam text that will be created
+     * @param Exam $exam_text exam text that will be created
      * @return bool feedback (was the exam created properly ?)
      */
-    public function create($exam_text)
+    public function createExam($exam)
     {
         // clean the input to prevent for example javascript within the exams.
         $exam_text = strip_tags($exam_text);
@@ -69,50 +147,4 @@ class ScheduleModel
         return false;
     }
 
-    /**
-     * Setter for a exam (update)
-     * @param int $exam_id id of the specific exam
-     * @param string $exam_text new text of the specific exam
-     * @return bool feedback (was the update successful ?)
-     */
-    public function editSave($exam_id, $exam_text)
-    {
-        // clean the input to prevent for example javascript within the exams.
-        $exam_text = strip_tags($exam_text);
-
-        $sql = "UPDATE exams SET exam_text = :exam_text WHERE exam_id = :exam_id AND user_id = :user_id";
-        $query = $this->db->prepare($sql);
-        $query->execute(array(':exam_id' => $exam_id, ':exam_text' => $exam_text, ':user_id' => $_SESSION['user_id']));
-
-        $count =  $query->rowCount();
-        if ($count == 1) {
-            return true;
-        } else {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_EDITING_FAILED;
-        }
-        // default return
-        return false;
-    }
-
-    /**
-     * Deletes a specific exam
-     * @param int $exam_id id of the exam
-     * @return bool feedback (was the exam deleted properly ?)
-     */
-    public function delete($exam_id)
-    {
-        $sql = "DELETE FROM exams WHERE exam_id = :exam_id AND user_id = :user_id";
-        $query = $this->db->prepare($sql);
-        $query->execute(array(':exam_id' => $exam_id, ':user_id' => $_SESSION['user_id']));
-
-        $count =  $query->rowCount();
-
-        if ($count == 1) {
-            return true;
-        } else {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_DELETION_FAILED;
-        }
-        // default return
-        return false;
-    }
 }
