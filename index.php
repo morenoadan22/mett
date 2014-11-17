@@ -8,7 +8,7 @@
  *
  * @author Panique
  * @link http://www.mett.net/
- * @link https://github.com/panique/mett/
+ * @link https://github.com/morenoadan22/mett
  * @license http://opensource.org/licenses/MIT MIT License
  */
 
