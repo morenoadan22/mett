@@ -6,17 +6,8 @@
 
     <meta charset="utf-8">
     <title>METT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     
-	<link href="https://vault.etransfer.com/assets/css/bootstrap.css" rel="stylesheet">
-	<link href="https://vault.etransfer.com/assets/css/core.css" rel="stylesheet">
-   	<link href="https://vault.etransfer.com/assets/css/styles-EFT.css" rel="stylesheet">
-	
-	
-			
-	
-			
 
 <script type="text/javascript">/* <![CDATA[ */
 	if (window.ColdFusion) ColdFusion.required['ItemCode']=true;
@@ -72,16 +63,7 @@
 </head>
 
 <body>
-	
-										
-									</ul>
-								</li>
-							
-			  	</ul>
-			</div>
-		
-	  </div>
-	</div>	
+</ul></li></ul></div></div></div>	
 			
 	
 	
@@ -90,12 +72,6 @@
 	
 	<div class="container" id="content">
 		
-	
-
-
-	
-	
-
 <fieldset>
 <legend>Master Exam Tracking Tool</legend>
 
@@ -127,7 +103,7 @@ function textCounter( field, maxlimit ) {
 <!--add link below-->
 <!--or get rid of it, doesnt matter-->
 
-<a href="return somewhere. link goes here">Return to Shedule List </a>
+<a href="/somewhere">Return to Shedule List </a>
 
 
 
@@ -187,15 +163,11 @@ function textCounter( field, maxlimit ) {
 
 
 
-
-
-
-
 <!--what is this for??-->
 <script>
 $(document).ready(function() { $('input[type=password]').val(''); });
 </script>
-
+<!----->
 
 </body>
 
