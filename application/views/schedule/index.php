@@ -1,22 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head><script type="text/javascript" src="/CFIDE/scripts/cfform.js"></script>
 <script type="text/javascript" src="/CFIDE/scripts/masks.js"></script>
 
     <meta charset="utf-8">
-    <title>METT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor one</title>
 	
     
-	<link href="https://vault.etransfer.com/assets/css/bootstrap.css" rel="stylesheet">
-	<link href="https://vault.etransfer.com/assets/css/core.css" rel="stylesheet">
-   	<link href="https://vault.etransfer.com/assets/css/styles-EFT.css" rel="stylesheet">
-	
-	
-			
-	
-			
 
 <script type="text/javascript">/* <![CDATA[ */
 	if (window.ColdFusion) ColdFusion.required['ItemCode']=true;
@@ -72,16 +62,7 @@
 </head>
 
 <body>
-	
-										
-									</ul>
-								</li>
-							
-			  	</ul>
-			</div>
-		
-	  </div>
-	</div>	
+</ul></li></ul></div></div></div>	
 			
 	
 	
@@ -90,14 +71,8 @@
 	
 	<div class="container" id="content">
 		
-	
-
-
-	
-	
-
 <fieldset>
-<legend>Master Exam Tracking Tool</legend>
+<legend>Schedule a Test</legend>
 
 
 <script type="text/javascript">
@@ -127,7 +102,7 @@ function textCounter( field, maxlimit ) {
 <!--add link below-->
 <!--or get rid of it, doesnt matter-->
 
-<a href="return somewhere. link goes here">Return to Shedule List </a>
+<a href="/somewhere">Return to Menu </a>
 
 
 
@@ -136,9 +111,9 @@ function textCounter( field, maxlimit ) {
 	<table cellpadding=5 style="width:900px; table-layout:auto;">
 	
 		<tr style="font-weight:bold;">
-			<td align="left" valign="bottom" >Test Code</td>
+			<td align="left" valign="bottom" >Test ID</td>
 			<td align="left" valign="bottom" >Test Name</td>
-			<td align="right" valign="bottom" >Drop-box <br />Order</td>
+			<td align="right" valign="bottom" >Drop-Box <br />Order</td>
 			<td align="right" valign="bottom" >Date and<br /> Time</td>
 			<td align="right" valign="bottom" >Room <br />Number</td>
 			<td align="left" valign="bottom" align="right" style="width:70px;">Status</td>
@@ -147,7 +122,7 @@ function textCounter( field, maxlimit ) {
 				
 		<tr style="height:100px;">
 			<td align="left" valign="top">
-				<input name="TestCode" id="TestCode"  type="text" maxlength="50"  style="width:70px;"  size="40"  />
+				<input name="TestID" id="TestID"  type="text" maxlength="50"  style="width:70px;"  size="40"  />
 			</td>
 			<td align="left" nowrap valign="top">
 				<input name="TestName" id="TestName"  type="text" maxlength="100"  style="width:300px;"  size="20"  />
@@ -171,7 +146,7 @@ function textCounter( field, maxlimit ) {
 		
 		<tr style="height:100px;">
 			<td align="left" valign="top">
-				<input type="submit" value="Insert">
+				<input type="submit" value="Submit">
 			</td>
 		</tr>
 		
@@ -185,11 +160,13 @@ function textCounter( field, maxlimit ) {
 	
 </div>	
 
+
+
 <!--what is this for??-->
 <script>
 $(document).ready(function() { $('input[type=password]').val(''); });
 </script>
-
+<!----->
 
 </body>
 
