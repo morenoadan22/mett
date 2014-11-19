@@ -20,7 +20,7 @@ ini_set("display_errors", 1);
  * if you are using a (different) port, then put this in here, like http://mydomain:8888/subfolder/
  * Note: The trailing slash is important!
  */
-define('URL', 'http://ec2-54-183-228-165.us-west-1.compute.amazonaws.com/mett/');
+define('URL', 'http://ec2-54-183-228-165.us-west-1.compute.amazonaws.com/~adan/mett/');
 
 /**
  * Configuration for: Folders
