@@ -102,7 +102,6 @@ function textCounter( field, maxlimit ) {
 <!--add link below-->
 <!--or get rid of it, doesnt matter-->
 
-<a href="/somewhere">Return to Menu </a>
 
 
 
