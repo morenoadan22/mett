@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/CFIDE/scripts/masks.js"></script>
 
     <meta charset="utf-8">
-    <title>Professor one</title>
+    <title>Schedule a Test</title>
 	
     
 
@@ -106,7 +106,7 @@ function textCounter( field, maxlimit ) {
 
 
 
-<form name="mainform" id="mainform" action="inventory_ip.cfm" method="post" onsubmit="return _CF_checkmainform(this)">
+<form name="mainform" id="mainform" action="register.cfm" method="post">
 	
 	<table cellpadding=5 style="width:900px; table-layout:auto;">
 	
