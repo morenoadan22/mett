@@ -90,9 +90,17 @@ class Exam
 		json_encode($arr);
 	}
 
-	public function fromJSON($json){
-		
-		return $exam; 
+	public function fromJSON($jsonString){
+		$data = json_decode($jsonString, true);		
+		$this->setId($data['id']);
+		$this->setExamType($data['exam_type']);
+		$this->setLocation($data['location']);
+		$this->setSeats($data['seats']);
+		$this->setDate($data['date']);
+		$this->setTime($data['time']);
+		$this->setSemester($data['semester']);
+		$this->setYear($data['year']);
+		return $this; 
 	}
 	
 }

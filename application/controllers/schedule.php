@@ -12,6 +12,7 @@ class Schedule extends Controller
     function __construct()
     {
             parent::__construct();
+			Auth::handleLogin();
     }
 
     /**
@@ -20,6 +21,38 @@ class Schedule extends Controller
      */
     function index()
     {
+	
+			$schedule_model = $this->loadModel('Schedule');
+			$this->view->schedules = $schedule_model->getAllExams();		
             $this->view->render('schedule/index');
+    }
+    
+    
+    public function addSchedule()
+    {
+    	if(isset($_POST['new_schedule']) AND !empty($_POST['new_schedule'])){
+    		$schedule_model = $this->loadModel('Schedule');
+    		$exam = new Exam();
+    		$schedule_model->createExam($exam->fromJSON($_POST['new_schedule']));
+    	}	
+    	
+    	header('location: ' . URL . 'schedule');
+    }
+    
+    
+    /**
+     * This method controls what happens when you move to /schedule/delete
+     * Deletes a scheduled exam.
+     * 
+     * @param int $examId
+     */
+    public function delete($examId)
+    {
+    	if(isset($exam_id)){
+    		$schedule_model = $this->loadModel('Schedule');
+    		$schedule_model->deleteExam($examId);
+    	}	
+    	
+    	header('location: ' . URL . 'schedule');
     }
 }

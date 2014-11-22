@@ -15,6 +15,14 @@ class ScheduleModel
         $this->db = $db;
     }
 
+    public function getAllExams(){
+    	$sql = "SELECT id, examType, location, seats, date, time, semester, year";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+
+    	return $query->fetch();
+    }
+    
     /**
      * Gets the number of available seats for an upcoming exam.
      * 
@@ -40,7 +48,7 @@ class ScheduleModel
      */
     public function getExamSchedule($exam_id)
     {
-    	$sql = "SELECT id, examType, location, seats, date, time, semeseter, year AND exam_id = :exam_id";
+    	$sql = "SELECT id, examType, location, seats, date, time, semeseter, year WHERE exam_id = :exam_id";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_id' => $exam_id));
     
@@ -119,23 +127,27 @@ class ScheduleModel
     	// default return
     	return false;
     }
-        
-     
+
+   
 
 
     /**
      * Setter for a exam (create)
-     * @param Exam $exam_text exam text that will be created
+     * @param Exam $exam exam json string
      * @return bool feedback (was the exam created properly ?)
      */
     public function createExam($exam)
     {
-        // clean the input to prevent for example javascript within the exams.
-        $exam_text = strip_tags($exam_text);
-
-        $sql = "INSERT INTO exams (exam_text, user_id) VALUES (:exam_text, :user_id)";
+        $sql = "INSERT INTO exam_schedule (exam_type, location, seats, date, time, semester, year)";
+        $sql .= " VALUES (:exam_type, :location, :seats, :date, :time, :semester, :year)";
         $query = $this->db->prepare($sql);
-        $query->execute(array(':exam_text' => $exam_text, ':user_id' => $_SESSION['user_id']));
+        $query->execute(array(':exam_type' => $exam->getExamType(),
+        			':location' => $exam->getLocation(),
+        			':seats' => $exam->getSeats(),
+        			':date' => $exam->getDate(),
+        			':time' => $exam->getTime(),
+        			':semester' => $exam->getSemseter(),
+        			':year' => $exam->getYear()));
 
         $count =  $query->rowCount();
         if ($count == 1) {
