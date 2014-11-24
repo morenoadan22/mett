@@ -1,9 +1,9 @@
 <head>
     <meta charset="UTF-8"/>
 	
-	<link rel="stylesheet" href="public/css/schedule.css" />
+	<link rel="stylesheet" href="../public/css/schedule.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="public/js/schedule.js"></script>
+	<script type="text/javascript" src="../public/js/schedule.js"></script>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
 			<option value="SPRING">Spring</option>
 			<option value="SUMMER">Summer</option>
 		</select>	
-		<label for="selectYear">Year</label><select id="years" name="selectYear"></select>		
+		<label for="selectYear">Year</label><select id="years" name="selectYear"></select><br>		
 		<input type="submit" value='Add Exam' autocomplete="off" />
 	</form>
 	
