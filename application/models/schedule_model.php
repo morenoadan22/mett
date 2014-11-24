@@ -21,8 +21,8 @@ class ScheduleModel
      * @return multitype: 
      */
     public function getAllExams(){
-    	$sql = "SELECT exam_schedule.id, exam_type, location, count(student_exam.*) AS student_count, date, time, semester, year FROM exam_schedule";
-    	$sql .= " LEFT JOIN student_exam.exam_schedule = exam_schedule.id";
+    	$sql = "SELECT exam_schedule.id, exam_type, count(student_exam.id) AS student_count, location, date, time, semester, year FROM exam_schedule";
+    	$sql .= " LEFT JOIN student_exam ON student_exam.exam_schedule = exam_schedule.id";
     	$query = $this->db->prepare($sql);
     	$query->execute();
 
