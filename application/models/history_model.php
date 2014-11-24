@@ -14,6 +14,20 @@ class ScheduleModel
     {
         $this->db = $db;
     }
+    
+    /**
+     * Get all exams associated with the current session's user.
+     * @return array an array with serveral exam objects
+     */
+    public function getUserExams()
+    {
+    	$sql = "select exam_type, location, date, time, semester, year, score, pass from student_exam
+				join exam_schedule on student_exam.exam_schedule = exam_schedule.id where student_exam.red_id = :red_id";
+    	$query = $this->db->prepare($sql);
+    	$query->execute(array(':red_id' => $_SESSION['user_id']));
+
+    	return $query->fetchAll();
+    }
 
     /**
      * Getter for all exams (exams are an implementation of example data, in a real world application this

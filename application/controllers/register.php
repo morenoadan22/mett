@@ -20,7 +20,22 @@ class Register extends Controller
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
     function index()
-    {
-            $this->view->render('register/index');
+    {	    								
+		$history_model = $this->loadModel('History');
+		$this->view->pastExams = $history_model->getUserExams();					
+        $this->view->render('register/index');
     }
+    
+    
+    function enroll()
+    {
+    	if(isset($_SESSION['user_redId'])){
+    		$history_model = $this->loadModel('History');
+    		$schedule_model = $this->loadModel('Schedule');
+    		$this->view->examTypes = $schedule_model->getExamTypes();
+    		$this->view->pastExams = $history_model->getUserExams();
+    		$this->view->render('register/enroll');
+    	}    			    	
+    }
+           
 }

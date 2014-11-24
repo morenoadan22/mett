@@ -12,6 +12,7 @@ class Overview extends Controller
     function __construct()
     {
         parent::__construct();
+        Auth::handleLogin();
     }
 
     /**

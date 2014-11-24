@@ -18,7 +18,9 @@ function validateFormOnSubmit(form){
 	var valid = true;
 	if($("[name='selectExamType']").val() == 0){
 		valid = false;
+		$("[name='selectExamType']").addClass("error");		
 	}
+		
 	
 	return valid;
 }

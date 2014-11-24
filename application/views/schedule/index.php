@@ -15,8 +15,8 @@
 	
 	<form method="post" action="<?php echo URL;?>schedule/addSchedule" onSubmit="return validateFormOnSubmit(this)">
 		<label for="selectExamType">Exam Type</label>
-		<select name="selectExamType">
-			<option value="0">--Select One--</option>
+		<select name="selectExamType" required>
+			<option value="">--Select One--</option>
 			<?php 
 				if($this->examTypes){
 					foreach($this->examTypes as $key=> $value){
