@@ -35,7 +35,7 @@
 			<option val="SPRING">Spring</option>
 			<option val="SUMMER">Summer</option>
 		</select>	
-		<label for="selectYear">Year:</label><select name="selectYear"></select>		
+		<label for="selectYear">Year:</label><select id="years" name="selectYear"></select>		
 		<input type="submit" value='Add Exam' autocomplete="off" />
 	</form>
 	

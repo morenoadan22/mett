@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function populateYears(){
 	var today = new Date();
-	var yearfield = $('[name="selectYear"]');	
+	var yearfield = document.getElementById("years");
     var year = 1990;
     for(var y = 0; y < 30; y++){
 		yearfield.options[y] = new Option(year, year);
