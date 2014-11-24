@@ -256,6 +256,8 @@ define("FEEDBACK_ACCOUNT_DOWNGRADE_FAILED", "Account downgrade failed.");
 define("FEEDBACK_NOTE_CREATION_FAILED", "Note creation failed.");
 define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
+define("FEEDBACK_SCHEDULE_CREATION_FAILED", "Schedule creation failed.");
+define("FEEDBACK_SCHEDULE_DELETION_FAILED", "Schedule deletion failed");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
 define("FEEDBACK_FACEBOOK_LOGIN_NOT_REGISTERED", "Sorry, you don't have an account here. Please register first.");

@@ -20,9 +20,11 @@ class ScheduleModel
      * 
      * @return multitype: 
      */
-    public function getAllExams(){
-    	$sql = "SELECT exam_schedule.id, exam_type, count(student_exam.id) AS student_count, location, date, time, semester, year FROM exam_schedule";
-    	$sql .= " LEFT JOIN student_exam ON student_exam.exam_schedule = exam_schedule.id";
+    public function getAllExams()
+    {
+    	$sql = "SELECT exam_schedule.id, exam_type, location, date, time, semester, year,"; 
+    	$sql .= "(select count(student_exam.exam_schedule) FROM student_exam where student_exam.exam_schedule = exam_schedule.id)";
+    	$sql .= " AS student_count FROM exam_schedule";    	
     	$query = $this->db->prepare($sql);
     	$query->execute();
 
@@ -127,7 +129,7 @@ class ScheduleModel
     	if ($count == 1) {
     		return true;
     	} else {
-    		$_SESSION["feedback_negative"][] = FEEDBACK_NOTE_DELETION_FAILED;
+    		$_SESSION["feedback_negative"][] = FEEDBACK_SCHEDULE_DELETION_FAILED;
     	}
     	// default return
     	return false;
@@ -143,12 +145,11 @@ class ScheduleModel
      */
     public function createExam($exam)
     {
-        $sql = "INSERT INTO exam_schedule (exam_type, location, seats, date, time, semester, year)";
-        $sql .= " VALUES (:exam_type, :location, :seats, :date, :time, :semester, :year)";
+        $sql = "INSERT INTO exam_schedule (exam_type, location, date, time, semester, year)";
+        $sql .= " VALUES (:exam_type, :location, :date, :time, :semester, :year)";
         $query = $this->db->prepare($sql);
         $query->execute(array(':exam_type' => $exam->getExamType(),
-        			':location' => $exam->getLocation(),
-        			':seats' => $exam->getSeats(),
+        			':location' => $exam->getLocation(),        			
         			':date' => $exam->getDate(),
         			':time' => $exam->getTime(),
         			':semester' => $exam->getSemseter(),
@@ -158,7 +159,7 @@ class ScheduleModel
         if ($count == 1) {
             return true;
         } else {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NOTE_CREATION_FAILED;
+            $_SESSION["feedback_negative"][] = FEEDBACK_SCHEDULE_CREATION_FAILED;
         }
         // default return
         return false;
