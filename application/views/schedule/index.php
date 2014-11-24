@@ -40,13 +40,13 @@
 	</form>
 	
 	
-	<h1 style="margin-top: 50px;">List of your notes</h1>
+	<h1 style="margin-top: 50px;">List of Exam Schedules</h1>
 	
 	<table id="table">
 		<tr><th>EXAM TYPE</th><th>LOCATION</th><th>STUDENT COUNT</th><th>DATE</th></tr>
 		<?php
 			if ($this->schedules) {
-				foreach($this->schedule as $key => $value) {
+				foreach($this->schedules as $key => $value) {
 					echo '<tr>';
 					echo '<td>' . htmlentities($value->exam_type) . '</td>';
 					echo '<td>' . htmlentities($value->location) . '</td>';
