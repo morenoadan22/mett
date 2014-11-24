@@ -26,7 +26,7 @@ class LoginModel
     public function login()
     {
         // we do negative-first checks here
-        if (!isset($_POST['user_name']) OR empty($_POST['user_name'])) {
+        if (!isset($_POST['user_redId']) OR empty($_POST['user_redId'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
             return false;
         }
@@ -44,13 +44,14 @@ class LoginModel
                                           user_active,
                                           user_account_type,
                                           user_failed_logins,
-                                          user_last_failed_login
+                                          user_last_failed_login,
+        								  red_id
                                    FROM   users
-                                   WHERE  (user_name = :user_name OR user_email = :user_name)
+                                   WHERE  (red_id = :user_redId)
                                           AND user_provider_type = :provider_type");
         // DEFAULT is the marker for "normal" accounts (that have a password etc.)
         // There are other types of accounts that don't have passwords etc. (FACEBOOK)
-        $sth->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'DEFAULT'));
+        $sth->execute(array(':user_redId' => $_POST['user_redId'], ':provider_type' => 'DEFAULT'));
         $count =  $sth->rowCount();
         // if there's NOT one result
         if ($count != 1) {
@@ -85,6 +86,7 @@ class LoginModel
             Session::set('user_email', $result->user_email);
             Session::set('user_account_type', $result->user_account_type);
             Session::set('user_provider_type', 'DEFAULT');
+            Session::set('redId',$result->red_id);
             // put native avatar path into session
             Session::set('user_avatar_file', $this->getUserAvatarFilePath());
             // put Gravatar URL into session
@@ -133,9 +135,9 @@ class LoginModel
             // increment the failed login counter for that user
             $sql = "UPDATE users
                     SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
-                    WHERE user_name = :user_name OR user_email = :user_name";
+                    WHERE red_id = :red_id";
             $sth = $this->db->prepare($sql);
-            $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time() ));
+            $sth->execute(array(':red_id' => $_POST['user_redId'], ':user_last_failed_login' => time() ));
             // feedback message
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
             return false;

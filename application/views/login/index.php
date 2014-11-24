@@ -6,8 +6,8 @@
     <div class="login-default-box">
         <h1>Login</h1>
         <form action="<?php echo URL; ?>login/login" method="post">
-                <label>Username (or email)</label>
-                <input type="text" name="user_name" required />
+                <label>RedId</label>
+                <input type="text" name="user_redId" required />
                 <label>Password</label>
                 <input type="password" name="user_password" required />
                 <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />

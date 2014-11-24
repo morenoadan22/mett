@@ -21,19 +21,28 @@ class Schedule extends Controller
      */
     function index()
     {
-	
 			$schedule_model = $this->loadModel('Schedule');
-			$this->view->schedules = $schedule_model->getAllExams();		
+			$this->view->schedules = $schedule_model->getAllExams();	
+			$this->view->examTypes = $schedule_model->getExamTypes();	
             $this->view->render('schedule/index');
     }
     
     
+    /**
+     * Handles what happens when user moves to URL/
+     */
     public function addSchedule()
     {
-    	if(isset($_POST['new_schedule']) AND !empty($_POST['new_schedule'])){
+    	if(isset($_POST['selectExamType']) AND isset($_POST['selectSemester'])){
     		$schedule_model = $this->loadModel('Schedule');
     		$exam = new Exam();
-    		$schedule_model->createExam($exam->fromJSON($_POST['new_schedule']));
+    		$exam->setExamType($_POST['selectExamType']);
+    		$exam->setLocation($_POST['textLocation']);
+    		$exam->setDate($_POST['textDate']);
+    		$exam->setTime($_POST['textTime']);
+    		$exam->setSemester($_POST['selectSemester']);
+    		$exam->setYear($_POST['selectYear']);
+    		$schedule_model->createExam($exam);
     	}	
     	
     	header('location: ' . URL . 'schedule');

@@ -15,12 +15,18 @@ class ScheduleModel
         $this->db = $db;
     }
 
+    /**
+     * Gets all exams EVER no filters.
+     * 
+     * @return multitype: 
+     */
     public function getAllExams(){
-    	$sql = "SELECT id, examType, location, seats, date, time, semester, year";
+    	$sql = "SELECT exam_schedule.id, exam_type, location, count(student_exam.*) AS student_count, date, time, semester, year FROM exam_schedule";
+    	$sql .= " LEFT JOIN student_exam.exam_schedule = exam_schedule.id";
     	$query = $this->db->prepare($sql);
     	$query->execute();
 
-    	return $query->fetch();
+    	return $query->fetchAll();
     }
     
     /**
@@ -33,7 +39,7 @@ class ScheduleModel
     {
     	$studentCount = $this->getStudentCount($examId);
     	
-    	$sql = "SELECT seats FROM examSchedule WHERE id = :exam_schedule";
+    	$sql = "SELECT seats FROM exam_schedule WHERE id = :exam_schedule";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_schedule' => $examId));
     	
@@ -48,12 +54,25 @@ class ScheduleModel
      */
     public function getExamSchedule($exam_id)
     {
-    	$sql = "SELECT id, examType, location, seats, date, time, semeseter, year WHERE exam_id = :exam_id";
+    	$sql = "SELECT id, exam_type, location, seats, date, time, semeseter, year FROM exam_schedule WHERE id = :exam_id";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_id' => $exam_id));
     
     	// fetch() is the PDO method that gets a single result
     	return $query->fetch();
+    }
+    
+    /**
+     * Getter for all the exam types;
+     * 
+     * @return multitype:
+     */
+    public function getExamTypes(){
+    	$sql = "SELECT id, type FROM exam_type";
+    	$query = $this->db->prepare($sql);
+    	$query->execute();
+    	
+    	return $query->fetchAll();
     }
     
     
@@ -65,7 +84,7 @@ class ScheduleModel
      */
     public function getStudentCount($examId)
     {
-    	$sql = "SELECT count(*) FROM studentExam WHERE examSchedule = :exam_schedule";
+    	$sql = "SELECT count(*) FROM student_exam WHERE exam_schedule = :exam_schedule";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_schedule' => $examId));
     	
@@ -82,7 +101,7 @@ class ScheduleModel
      */
     public function getUpcomingExams($semester, $year)
     {
-    	$sql = "SELECT * FROM examSchedule WHERE semester = :semester AND year = :year";
+    	$sql = "SELECT * FROM exam_schedule WHERE semester = :semester AND year = :year";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':semester' => $semester, ':year' => $year));
     	
@@ -99,7 +118,7 @@ class ScheduleModel
      */
     public function getUpcomingExams($semester, $year, $examType)
     {
-    	$sql = "SELECT * FROM examSchedule WHEERE semester = :semester AND year = :year AND examType = :exam_type";
+    	$sql = "SELECT * FROM exam_schedule WHEERE semester = :semester AND year = :year AND exam_type = :exam_type";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':semester' => $semester, ':year' => $year, ':exam_type' => $examType));
     	
@@ -113,7 +132,7 @@ class ScheduleModel
      */
     public function deleteExam($examId)
     {
-    	$sql = "DELETE FROM examSchedule WHERE examId = :examId";
+    	$sql = "DELETE FROM exam_schedule WHERE id = :examId";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_id' => $exam_id));
     	
