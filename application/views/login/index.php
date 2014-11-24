@@ -8,10 +8,15 @@
         <form action="<?php echo URL; ?>login/login" method="post">
                 <label>RedId</label>
                 <input type="text" name="user_redId" required />
-                <label>Password</label>
+                <label>Password</label>                
                 <input type="password" name="user_password" required />
-                <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
-                <label class="remember-me-label">Keep me logged in (for 2 weeks)</label>
+                <fieldset>
+                	<div>
+                		<input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
+                		<label class="remember-me-label">Keep me logged in (for 2 weeks)</label>
+                	</div>
+                </fieldset>
+                
                 <input type="submit" class="login-submit-button" />
         </form>
         <a href="<?php echo URL; ?>login/register">Register</a>
