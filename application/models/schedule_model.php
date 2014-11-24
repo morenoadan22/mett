@@ -93,23 +93,6 @@ class ScheduleModel
     
     
     /**
-     * Getter for the upcoming exams for a particular semester and year
-     * 
-     * @param string $semester
-     * @param int $year
-     * @return array an array with several objects (the results)
-     */
-    public function getUpcomingExams($semester, $year)
-    {
-    	$sql = "SELECT * FROM exam_schedule WHERE semester = :semester AND year = :year";
-    	$query = $this->db->prepare($sql);
-    	$query->execute(array(':semester' => $semester, ':year' => $year));
-    	
-    	return $query->fetchAll();
-    }
-    
-    
-    /**
      * Getter for the upcoming exams for a particular semester and year by exam type.
      * @param string $semester
      * @param int $year
@@ -118,7 +101,10 @@ class ScheduleModel
      */
     public function getUpcomingExams($semester, $year, $examType)
     {
-    	$sql = "SELECT * FROM exam_schedule WHEERE semester = :semester AND year = :year AND exam_type = :exam_type";
+    	$sql = "SELECT * FROM exam_schedule WHERE semester = :semester AND year = :year";
+    	if(isset($examType)){
+    		$sql .= " AND exam_type = :exam_type";
+    	}
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':semester' => $semester, ':year' => $year, ':exam_type' => $examType));
     	
