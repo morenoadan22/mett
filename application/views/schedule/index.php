@@ -1,6 +1,7 @@
 <head>
     <meta charset="UTF-8"/>
 	
+	<link rel="stylesheet" href="../public/css/schedule.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="../public/js/schedule.js"></script>
 </head>
@@ -13,13 +14,13 @@
 	 <?php $this->renderFeedbackMessages(); ?>
 	
 	<form method="post" action="<?php echo URL;?>schedule/addSchedule" onSubmit="return validateFormOnSubmit(this)">
-		<label for="selectExamType">Exam Type:</label>
+		<label for="selectExamType">Exam Type</label>
 		<select name="selectExamType">
-			<option val="0">--Select One--</option>
+			<option value="0">--Select One--</option>
 			<?php 
 				if($this->examTypes){
 					foreach($this->examTypes as $key=> $value){
-						echo '<option val="';
+						echo '<option value="';
 						echo htmlentities($value->id) . '">';
 						echo htmlentities($value->type);
 						echo '</option>';
@@ -27,22 +28,22 @@
 				}
 			?>
 		</select>
-		<input name="textLocation" type="text" placeholder="LOCATION">
-		<input name="textDate" type="date">
-		<input name="textTime" type="time">
-		<label for="selectSemester">Semester:</label><select name="selectSemester">
-			<option val="FALL">Fall</option>
-			<option val="SPRING">Spring</option>
-			<option val="SUMMER">Summer</option>
+		<label for="textLocation">Room Number</label><input name="textLocation" type="text">
+		<label for="textDate">Date</label><input name="textDate" type="date">
+		<label for="textTime">Time</label><input name="textTime" type="time">
+		<label for="selectSemester">Semester</label><select name="selectSemester">
+			<option value="FALL">Fall</option>
+			<option value="SPRING">Spring</option>
+			<option value="SUMMER">Summer</option>
 		</select>	
-		<label for="selectYear">Year:</label><select id="years" name="selectYear"></select>		
+		<label for="selectYear">Year</label><select id="years" name="selectYear"></select>		
 		<input type="submit" value='Add Exam' autocomplete="off" />
 	</form>
 	
 	
 	<h1 style="margin-top: 50px;">List of Exam Schedules</h1>
 	
-	<table id="table">
+	<table id="examTable">
 		<tr><th>EXAM TYPE</th><th>LOCATION</th><th>STUDENT COUNT</th><th>DATE</th></tr>
 		<?php
 			if ($this->schedules) {

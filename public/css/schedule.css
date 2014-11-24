@@ -1,0 +1,21 @@
+table{
+	border-collapse: collapse;
+	width: 100%;	
+}
+
+th{
+	height: 50px;
+	background-color: red;
+	color: white;
+}
+
+
+td{
+	height: 50px;
+	vertical-align: bottom;
+	padding: 15px;
+}
+
+table, th, td{
+	border: 1px solid black;
+}
