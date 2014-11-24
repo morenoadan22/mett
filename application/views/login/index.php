@@ -17,7 +17,7 @@
                 	</div>
                 </fieldset>
                 
-                <input type="submit" class="login-submit-button" />
+                <input type="submit" class="login-submit-button" value="Login" />
         </form>
         <a href="<?php echo URL; ?>login/register">Register</a>
         |
