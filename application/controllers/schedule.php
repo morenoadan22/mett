@@ -36,12 +36,12 @@ class Schedule extends Controller
     	if(isset($_POST['selectExamType']) AND isset($_POST['selectSemester'])){
     		$schedule_model = $this->loadModel('Schedule');
     		$exam = new Exam();
-    		$exam->setExamType((int) $_POST['selectExamType']);
+    		$exam->setExamType($_POST['selectExamType']);
     		$exam->setLocation($_POST['textLocation']);
     		$exam->setDate($_POST['textDate']);
     		$exam->setTime($_POST['textTime']);
     		$exam->setSemester($_POST['selectSemester']);
-    		$exam->setYear((int) $_POST['selectYear']);
+    		$exam->setYear($_POST['selectYear']);
     		$schedule_model->createExam($exam);
     	}	
     	

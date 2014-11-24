@@ -49,11 +49,11 @@ class Exam
 		$this->id = $id;
 	}
 	
-	public function setExamType(int $examType){
+	public function setExamType($examType){
 		$this->examType = $examType;
 	}
 	
-	public function setLocation(string $location){
+	public function setLocation($location){
 		$this->location = $location;
 	}
 	
@@ -69,11 +69,11 @@ class Exam
 		$this->time = $time;
 	}
 	
-	public function setSemester(string $semester){
+	public function setSemester($semester){
 		$this->semester = $semester;
 	}
 	
-	public function setYear(int $year){
+	public function setYear($year){
 		$this->year = $year;
 	}
 	
