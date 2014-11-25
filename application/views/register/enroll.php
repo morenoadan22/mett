@@ -35,7 +35,7 @@
 					echo '<td>' . htmlentities($value->date) . '</td>';
 					echo '<td>' . htmlentities($value->time) . '</td>';
 					if(isEnrolled($value->student_exam_id, $this->pastExams)){
-						echo '<td><input type="button" onClick="parent.location="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'" value="Unregister/></td>';
+						echo '<td><input type="button" onClick="parent.location="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'" value="Unregister"/></td>';
 					}else{
 						echo '<td><input type="button" onClick="parent.location="' . URL . 'register/enrollSave/' . $value->id . '" value="Enroll" /></td>';
 					}
