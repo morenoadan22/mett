@@ -101,7 +101,7 @@ class ScheduleModel
      */
     public function getUpcomingExams()
     {
-    	$curYear = new Date("Y");
+    	$curYear = date("Y");
     	$sql = "SELECT exam_schedule.id, exam_type.type AS exam_type , location, date, time, semester, year,"; 
     	$sql .= "(select count(student_exam.exam_schedule) FROM student_exam WHERE student_exam.exam_schedule = exam_schedule.id)";
     	$sql .= " AS student_count, (select id from student_exam where student_exam.exam_schedule = exam_schedule.id) AS student_exam_id, FROM exam_schedule JOIN exam_type ON exam_schedule.exam_type = exam_type.id WHERE year >= :current_year";
