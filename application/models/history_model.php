@@ -1,10 +1,10 @@
 <?php
 
 /**
- * ScheduleModel
+ * HistoryModel
  * This is basically a simple CRUD (Create/Read/Update/Delete) demonstration.
  */
-class ScheduleModel
+class HistoryModel
 {
     /**
      * Constructor, expects a Database connection
