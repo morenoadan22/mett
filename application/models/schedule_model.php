@@ -97,19 +97,19 @@ class ScheduleModel
     
     /**
      * Getter for the upcoming exams for a particular semester and year by exam type.
-     * @param string $semester
-     * @param int $year
-     * @param int $examType
      * @return array an array with several objects (the query results)
      */
-    public function getUpcomingExams($semester, $year, $examType)
+    public function getUpcomingExams()
     {
-    	$sql = "SELECT * FROM exam_schedule WHERE semester = :semester AND year = :year";
+    	$curYear = new date("Y");
+    	$sql = "SELECT exam_schedule.id, exam_type.type AS exam_type , location, date, time, semester, year,"; 
+    	$sql .= "(select count(student_exam.exam_schedule) FROM student_exam WHERE student_exam.exam_schedule = exam_schedule.id)";
+    	$sql .= " AS student_count, (select id from student_exam where student_exam.exam_schedule = exam_schedule.id) AS student_exam_id, FROM exam_schedule JOIN exam_type ON exam_schedule.exam_type = exam_type.id WHERE year >= :current_year";
     	if(isset($examType)){
     		$sql .= " AND exam_type = :exam_type";
     	}
     	$query = $this->db->prepare($sql);
-    	$query->execute(array(':semester' => $semester, ':year' => $year, ':exam_type' => $examType));
+    	$query->execute(array(':current_year' => $curYear));
     	
     	return $query->fetchAll();    	
     }

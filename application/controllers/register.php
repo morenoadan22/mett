@@ -33,13 +33,32 @@ class Register extends Controller
      */
     function enroll()
     {
-    	if(isset($_SESSION['user_redId'])){
+    	if(isset($_SESSION['red_id'])){
     		$history_model = $this->loadModel('History');
     		$schedule_model = $this->loadModel('Schedule');
-    		$this->view->examTypes = $schedule_model->getExamTypes();
+    		$this->view->examOptions = $schedule_model->getAllExams();
     		$this->view->pastExams = $history_model->getUserExams();
     		$this->view->render('register/enroll');
     	}    			    	
+    }
+    
+    /**
+     * Sumbits the student registration
+     */
+    function enrollSave($examId)
+    {
+    	if(isset($_SESSION['red_id'])){
+    		$register_model = $this->loadModel('Register'); 		
+    		$register_model->register($examId, $_SESSION['red_id']);
+       	}
+    }
+    
+    function enrollRemove($studentExamId)
+    {
+    	if(isset($_SESSION['red_id'])){
+    		$register_model = $this->loadModel('Register');
+    		$register_model->unregister($studentExamId);
+    	}
     }
            
 }
