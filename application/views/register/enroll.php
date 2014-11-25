@@ -34,8 +34,11 @@
 					echo '<td>' . htmlentities($value->student_count) . '</td>';
 					echo '<td>' . htmlentities($value->date) . '</td>';
 					echo '<td>' . htmlentities($value->time) . '</td>';
-					echo '<td><a href="'. URL . 'register/enrollSave/' . $value->id.'">Enroll</a></td>';
-					echo '<td><a href="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'">Unregister</a></td>';
+					if(isEnrolled($value->exam_type, $this->pastExams)){
+						echo '<td><a href="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'">Unregister</a></td>';
+					}else{
+						echo '<td><a href="'. URL . 'register/enrollSave/' . $value->id.'">Enroll</a></td>';
+					}
 					echo '</tr>';
 				}
 			} else {

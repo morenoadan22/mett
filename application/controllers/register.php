@@ -36,7 +36,7 @@ class Register extends Controller
     	if(isset($_SESSION['red_id'])){
     		$history_model = $this->loadModel('History');
     		$schedule_model = $this->loadModel('Schedule');
-    		$this->view->examOptions = $schedule_model->getAllExams();
+    		$this->view->examOptions = $schedule_model->getUpcomingExams();
     		$this->view->pastExams = $history_model->getUserExams();
     		$this->view->render('register/enroll');
     	}    			    	
