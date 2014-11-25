@@ -123,7 +123,7 @@ class ScheduleModel
     {
     	$sql = "DELETE FROM exam_schedule WHERE id = :exam_id";
     	$query = $this->db->prepare($sql);
-    	$query->execute(array(':exam_id' => $exam_id));
+    	$query->execute(array(':exam_id' => $examId));
     	
     	$count =  $query->rowCount();
     	
