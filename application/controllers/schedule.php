@@ -45,7 +45,7 @@ class Schedule extends Controller
     		$schedule_model->createExam($exam);
     	}	
     	
-    	header('location: ' . URL . 'schedule');
+    	header('location: ' . URL . 'schedule/index');
     }
     
     
@@ -62,6 +62,6 @@ class Schedule extends Controller
     		$schedule_model->deleteExam($examId);
     	}	
     	
-    	header('location: ' . URL . 'schedule');
+    	header('location: ' . URL . 'schedule/index');
     }
 }
