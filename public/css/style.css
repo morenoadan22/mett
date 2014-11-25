@@ -299,6 +299,15 @@ input[type="submit"] {
     /*padding: 10px;*/
     cursor: pointer;
 }
+
+input[type="button"]{
+	border: 0;
+	background-color: #2C2F3B;
+	color: #fff;
+	font-weight: bold;
+	cursor:pointer;	
+}
+
 .remember-me-checkbox {
     float: left; min-width: 0; margin: 3px 10px 15px 0;
 }

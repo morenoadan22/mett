@@ -37,6 +37,8 @@
 		?>
 	</ul>
 	
+	<br><br>
+	
 	<input id="buttonEnroll" type="button" value='Enroll' autocomplete="off" />
 	
 			
