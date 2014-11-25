@@ -2,7 +2,7 @@
     <meta charset="UTF-8"/>
 		
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	
+	<script type="text/javascript" src="../public/js/register.js"></script>	
 </head>
 
 <body>
@@ -36,6 +36,8 @@
 			}
 		?>
 	</ul>
+	
+	<input id="buttonEnroll" type="button" value='Enroll' autocomplete="off" />
 	
 			
 </body>
