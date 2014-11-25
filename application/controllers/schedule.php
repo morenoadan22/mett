@@ -56,7 +56,7 @@ class Schedule extends Controller
      */
     public function edit($examId)
     {
-    	$shedule_model = $this->loadModel('Schedule');
+    	$schedule_model = $this->loadModel('Schedule');
     	$this->view->schedule = $schedule_model->getExamSchedule($examId);
     	$this->view->render('schedule/edit');	
     }
@@ -86,10 +86,10 @@ class Schedule extends Controller
      */
     public function delete($examId)
     {
-    	if(isset($exam_id)){
-    		$schedule_model = $this->loadModel('Schedule');
-    		$schedule_model->deleteExam($examId);
-    	}	
+    	
+    	$schedule_model = $this->loadModel('Schedule');
+    	$schedule_model->deleteExam($examId);
+    		
     	
     	header('location: ' . URL . 'schedule/index');
     }
