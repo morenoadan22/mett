@@ -7,7 +7,7 @@
 
 <body>
 	
-	<h1>Enroll</h1>
+	<h1>Exam Options</h1>
 	
 	 <!-- echo out the system feedback (error and success messages) -->
 	 <?php $this->renderFeedbackMessages(); 
@@ -35,9 +35,9 @@
 					echo '<td>' . htmlentities($value->date) . '</td>';
 					echo '<td>' . htmlentities($value->time) . '</td>';
 					if(isEnrolled($value->student_exam_id, $this->pastExams)){
-						echo '<td><a href="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'">Unregister</a></td>';
+						echo '<td><input type="button" onClick="parent.location="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'" value="Unregister/></td>';
 					}else{
-						echo '<td><a href="'. URL . 'register/enrollSave/' . $value->id.'">Enroll</a></td>';
+						echo '<td><input type="button" onClick="parent.location="' . URL . 'register/enrollSave/' . $value->id . '" value="Enroll" /></td>';
 					}
 					echo '</tr>';
 				}
