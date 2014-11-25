@@ -52,7 +52,7 @@ class Register extends Controller
     		$register_model->register($examId, $_SESSION['red_id']);
        	}
        	
-       	header('location: ' . URL . 'schedule/enroll');
+       	header('location: ' . URL . 'register/enroll');
     }
     
     function enrollRemove($studentExamId)
@@ -62,7 +62,7 @@ class Register extends Controller
     		$register_model->unregister($studentExamId);
     	}
     	
-    	header('location: ' . URL . 'schedule/enroll');
+    	header('location: ' . URL . 'register/enroll');
     }
            
 }
