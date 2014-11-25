@@ -24,7 +24,7 @@ class ScheduleModel
     	$sql = "select exam_type, location, date, time, semester, year, score, pass from student_exam
 				join exam_schedule on student_exam.exam_schedule = exam_schedule.id where student_exam.red_id = :red_id";
     	$query = $this->db->prepare($sql);
-    	$query->execute(array(':red_id' => $_SESSION['user_id']));
+    	$query->execute(array(':red_id' => $_SESSION['red_id']));
 
     	return $query->fetchAll();
     }

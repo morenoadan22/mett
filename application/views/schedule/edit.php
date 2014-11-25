@@ -12,7 +12,7 @@
             <!-- we use htmlentities() here to prevent user input with " etc. break the HTML -->
             <input type="date" name="textDate" value="<?php echo htmlentities($this->schedule->date); ?>" />
             <label>Time</label>
-            <input type="time" name="textTime" value="<?php echo htmlentities($this->schedule->time);?>" />
+            <input type="time" name="textTime" value="<?php echo htmlentities($this->schedule->time);?>" /><br>
             <input type="submit" value='Change'/>
         </form>
     <?php } else { ?>

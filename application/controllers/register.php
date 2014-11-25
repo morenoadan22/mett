@@ -16,16 +16,21 @@ class Register extends Controller
     }
 
     /**
-     * Handles what happens when user moves to URL/index/index, which is the same like URL/index or in this
+     * Handles what happens when user moves to URL/register/index, which is the same like URL/index or in this
      * case even URL (without any controller/action) as this is the default controller-action when user gives no input.
      */
     function index()
     {	    								
-							
+		$schedule_model = $this->loadModel('Schedule');
+		$history_model = $this->loadModel('History');		
+		$this->view->examType = $schedule_model->getExamTypes();
+		$this->view->pastExams = $history_model->getUserExams();					
         $this->view->render('register/index');
     }
     
-    
+    /**
+     * Handles what happens when user moves to URL/register/enroll
+     */
     function enroll()
     {
     	if(isset($_SESSION['user_redId'])){
