@@ -50,6 +50,35 @@ class Schedule extends Controller
     
     
     /**
+     * Handles what happens when a user moves to /schedule/edit
+     * 
+     * @param int $examId the examId to edit
+     */
+    public function edit($examId)
+    {
+    	$shedule_model = $this->loadModel('Schedule');
+    	$this->view->schedule = $schedule_model->getExamSchedule($examId);
+    	$this->view->render('schedule/edit');	
+    }
+    
+    /**
+     * Handles when changes are submited to a schedule/edit
+     * 
+     */
+    public function editSave()
+    {
+    	$schedule_model = $this->loadModel('Schedule');
+    	$exam = new Exam();
+    	$exam->setId($_POST['examId']);    	
+    	$exam->setLocation($_POST['textLocation']);
+    	$exam->setDate($_POST['textDate']);
+    	$exam->setTime($_POST['textTime']);
+    	$schedule_model->editExam($exam); 
+    		
+    }
+    
+    
+    /**
      * This method controls what happens when you move to /schedule/delete
      * Deletes a scheduled exam.
      * 

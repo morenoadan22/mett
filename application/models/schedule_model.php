@@ -56,7 +56,8 @@ class ScheduleModel
      */
     public function getExamSchedule($exam_id)
     {
-    	$sql = "SELECT id, exam_type, location, seats, date, time, semeseter, year FROM exam_schedule WHERE id = :exam_id";
+    	$sql = "SELECT exam_schedule.id, exam_type.type AS exam_type, location, seats, date, time, semester, year FROM exam_schedule ";
+    	$sql .= " JOIN exam_type ON exam_schedule.exam_type = exam_type.id WHERE exam_schedule.id = :exam_id";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_id' => $exam_id));
     
@@ -120,7 +121,7 @@ class ScheduleModel
      */
     public function deleteExam($examId)
     {
-    	$sql = "DELETE FROM exam_schedule WHERE id = :examId";
+    	$sql = "DELETE FROM exam_schedule WHERE id = :exam_id";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':exam_id' => $exam_id));
     	
@@ -135,7 +136,27 @@ class ScheduleModel
     	return false;
     }
 
-   
+    /**
+     * Edits a specific exam
+     * 
+     * @param Exam $exam
+     * @return boolean feedback (was the exam edited properly? )
+     */
+   public function editExam($exam)
+   {
+   		$sql = "UPDATE exam_schedule SET location = :location, date = :date, time = :time where id = :exam_id";
+   		$query = $this->db->prepare($sql);
+   		$query->execute(array(':location' => $exam->getLocation(), ':date' => $exam->getDate(), ':time' => $exam->getTime()));
+   		
+   		$count = $query->rowCount();
+   		if(count == 1){
+   			return true;
+   		}else{
+   			$_SESSION["feedback_negative"][] = FEEDBACK_SCHEDULE_EDIT_FAILED;
+   		}
+   		
+   		return false;
+   }
 
 
     /**
