@@ -21,7 +21,7 @@ class HistoryModel
      */
     public function getUserExams()
     {
-    	$sql = "select exam_type, location, date, time, semester, year, score, pass from student_exam
+    	$sql = "select student_exam.id as student_exam_id, exam_type, location, date, time, semester, year, score, pass from student_exam
 				join exam_schedule on student_exam.exam_schedule = exam_schedule.id where student_exam.red_id = :red_id";
     	$query = $this->db->prepare($sql);
     	$query->execute(array(':red_id' => $_SESSION['red_id']));

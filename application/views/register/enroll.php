@@ -12,10 +12,10 @@
 	 <!-- echo out the system feedback (error and success messages) -->
 	 <?php $this->renderFeedbackMessages(); 
 		
-		function isEnrolled($exam_type, $pastExams)
+		function isEnrolled($studentExamId, $pastExams)
 		{
 	 		foreach($pastExams as $key => $value){
-	 			if($value->exam_type == $exam_type){
+	 			if($value->student_exam_id == $studentExamId){
 	 				return true;
 	 			}
 	 		}
@@ -34,7 +34,7 @@
 					echo '<td>' . htmlentities($value->student_count) . '</td>';
 					echo '<td>' . htmlentities($value->date) . '</td>';
 					echo '<td>' . htmlentities($value->time) . '</td>';
-					if(isEnrolled($value->exam_type, $this->pastExams)){
+					if(isEnrolled($value->student_exam_id, $this->pastExams)){
 						echo '<td><a href="'. URL . 'register/enrollRemove/' . $value->student_exam_id.'">Unregister</a></td>';
 					}else{
 						echo '<td><a href="'. URL . 'register/enrollSave/' . $value->id.'">Enroll</a></td>';
