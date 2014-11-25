@@ -86,7 +86,7 @@ class LoginModel
             Session::set('user_email', $result->user_email);
             Session::set('user_account_type', $result->user_account_type);
             Session::set('user_provider_type', 'DEFAULT');
-            Session::set('redId',$result->red_id);
+            Session::set('red_id',$result->red_id);
             // put native avatar path into session
             Session::set('user_avatar_file', $this->getUserAvatarFilePath());
             // put Gravatar URL into session
@@ -176,7 +176,7 @@ class LoginModel
 
         // get real token from database (and all other data)
         $query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password_hash, user_active,
-                                          user_account_type,  user_has_avatar, user_failed_logins, user_last_failed_login
+                                          user_account_type,  user_has_avatar, user_failed_logins, user_last_failed_login, red_id
                                      FROM users
                                      WHERE user_id = :user_id
                                        AND user_rememberme_token = :user_rememberme_token
@@ -197,6 +197,7 @@ class LoginModel
             Session::set('user_account_type', $result->user_account_type);
             Session::set('user_provider_type', 'DEFAULT');
             Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+            Session::set('red_id', $result->red_id);
             // call the setGravatarImageUrl() method which writes gravatar urls into the session
             $this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 
