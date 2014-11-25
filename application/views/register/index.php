@@ -9,10 +9,14 @@
 	
 	<h1>Available Exams</h1>
 	
+	 <!-- echo out the system feedback (error and success messages) -->
+	 <?php $this->renderFeedbackMessages(); ?>
+	
+	
 	<ul id="availableExamTypes">
 		<?php
-			function isEnrolled($exam_type){
-				foreach($this->pastExams as $key => $value){
+			function isEnrolled($exam_type, $pastExams){
+				foreach($pastExams as $key => $value){
 					if($value->exam_type == $exam_type){
 						return true;
 					}
@@ -22,7 +26,7 @@
 		
 			if($this->examTypes){
 				foreach($this->examTypes as $key => $value){
-					if(isEnrolled($value->id)){
+					if(isEnrolled($value->id, $this->pastExams)){
 						echo '<li class="enrolled">';
 					}else{
 						echo '<li>';
