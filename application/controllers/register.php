@@ -23,7 +23,7 @@ class Register extends Controller
     {	    								
 		$schedule_model = $this->loadModel('Schedule');
 		$history_model = $this->loadModel('History');		
-		$this->view->examType = $schedule_model->getExamTypes();
+		$this->view->examTypes = $schedule_model->getExamTypes();
 		$this->view->pastExams = $history_model->getUserExams();					
         $this->view->render('register/index');
     }
