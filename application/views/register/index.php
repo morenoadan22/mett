@@ -1,6 +1,7 @@
 <head>
     <meta charset="UTF-8"/>
-		
+	
+	<link rel="stylesheet" href="../public/css/register.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="../public/js/register.js"></script>	
 </head>

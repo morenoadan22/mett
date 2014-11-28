@@ -13,33 +13,34 @@
 	 <!-- echo out the system feedback (error and success messages) -->
 	 <?php $this->renderFeedbackMessages(); ?>
 	
-	<form method="post" action="<?php echo URL;?>schedule/addSchedule" onSubmit="return validateFormOnSubmit(this)">
-		<label for="selectExamType">Exam Type</label>
-		<select name="selectExamType" required>
-			<option value="">--Select One--</option>
-			<?php 
-				if($this->examTypes){
-					foreach($this->examTypes as $key=> $value){
-						echo '<option value="';
-						echo htmlentities($value->id) . '">';
-						echo htmlentities($value->type);
-						echo '</option>';
+	<div id="scheduleForm">
+		<form method="post" action="<?php echo URL;?>schedule/addSchedule" onSubmit="return validateFormOnSubmit(this)">
+			<label for="selectExamType">Exam Type</label>
+			<select name="selectExamType" required>
+				<option value="">--Select One--</option>
+				<?php 
+					if($this->examTypes){
+						foreach($this->examTypes as $key=> $value){
+							echo '<option value="';
+							echo htmlentities($value->id) . '">';
+							echo htmlentities($value->type);
+							echo '</option>';
+						}
 					}
-				}
-			?>
-		</select>
-		<label for="textLocation">Room Number</label><input name="textLocation" type="text">
-		<label for="textDate">Date</label><input name="textDate" type="date">
-		<label for="textTime">Time</label><input name="textTime" type="time">
-		<label for="selectSemester">Semester</label><select name="selectSemester">
-			<option value="FALL">Fall</option>
-			<option value="SPRING">Spring</option>
-			<option value="SUMMER">Summer</option>
-		</select>	
-		<label for="selectYear">Year</label><select id="years" name="selectYear"></select><br>		
-		<input type="submit" value='Add Exam' autocomplete="off" />
-	</form>
-	
+				?>
+			</select>
+			<label for="textLocation">Room Number</label><input name="textLocation" type="text">
+			<label for="textDate">Date</label><input name="textDate" type="date">
+			<label for="textTime">Time</label><input name="textTime" type="time">
+			<label for="selectSemester">Semester</label><select name="selectSemester">
+				<option value="FALL">Fall</option>
+				<option value="SPRING">Spring</option>
+				<option value="SUMMER">Summer</option>
+			</select>	
+			<label for="selectYear">Year</label><select id="years" name="selectYear"></select><br>		
+			<input type="submit" value='Add Exam' autocomplete="off" />
+		</form>
+	</div>	
 	
 	<h1 style="margin-top: 50px;">List of Exam Schedules</h1>
 	

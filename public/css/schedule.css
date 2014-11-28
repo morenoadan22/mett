@@ -19,3 +19,11 @@ td{
 table, th, td{
 	border: 1px solid black;
 }
+
+#examTable, #scheduleForm {
+	margin : 5px;
+}
+
+select{
+	padding: 5px;
+}
