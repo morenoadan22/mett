@@ -209,6 +209,8 @@ define("FEEDBACK_PASSWORD_WRONG", "Password was wrong.");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");
 // The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
 define("FEEDBACK_LOGIN_FAILED", "Login failed.");
+define("FEEDBACK_REDID_FIELD_EMPTY", "RedId field was empty");
+define("FEEDBACK_INVALID_REDID", "Invalid RedId Number");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
 define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
 define("FEEDBACK_EMAIL_FIELD_EMPTY", "Email and passwords fields were empty.");

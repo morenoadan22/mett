@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
-#availableExamTypes {
+#availableExamTypes, input {
 	margin: 5px;
 }
+
+

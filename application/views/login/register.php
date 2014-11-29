@@ -7,6 +7,8 @@
         <h1>Register</h1>
         <!-- register form -->
         <form method="post" action="<?php echo URL; ?>login/register_action" name="registerform">
+        	<label for="login_input_redid">RedId</label>
+        	<input id="login_input_redid" class="login_input" type="text" pattern="[0-9]{1,20}" name="red_id" required />
             <!-- the user name input field uses a HTML5 pattern check -->
             <label for="login_input_username">
                 Username

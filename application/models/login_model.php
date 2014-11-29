@@ -426,7 +426,9 @@ class LoginModel
         // perform all necessary form checks
         if (!$this->checkCaptcha()) {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
-        } elseif (empty($_POST['user_name'])) {
+        }elseif(empty($_POST['red_id'])){
+			$_SESSION["feedback_negative"][] = FEEDBACK_REDID_FIELD_EMPTY;
+        }elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
         } elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
@@ -443,7 +445,7 @@ class LoginModel
         } elseif (strlen($_POST['user_email']) > 64) {
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_TOO_LONG;
         } elseif (strlen($_POST['red_id']) != 9 ) {
-            $_SESSION["feedback_negative"][] = "Invalid Red ID"; // Enum
+            $_SESSION["feedback_negative"][] = FEEDBACK_INVALID_REDID; // Enum
 	// Need to also add checks for first middle and last names
         } elseif (!filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_DOES_NOT_FIT_PATTERN;
