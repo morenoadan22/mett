@@ -21,6 +21,9 @@ class History extends Controller
      */
     function index()
     {
+    		$history_model = $this->loadModel('History');
+    		$this->view->pastExams = $history_model->getUserExams();
             $this->view->render('history/index');
     }
+    
 }
