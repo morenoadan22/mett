@@ -12,9 +12,13 @@
             foreach($this->pastExams as $key => $value) {
                 echo '<tr>';
                 echo '<td>' . htmlentities($value->semester . '-' . $value->year) . '</td>';
-                echo '<td>' . htmlentities($value->examType) . '</td>';
+                echo '<td>' . htmlentities($value->exam_type) . '</td>';
                 echo '<td>' . htmlentities($value->score) . '</td>';
-                echo '<td>' . htmlentities(($value->pass) == 1 ? 'PASS' : 'FAILED') . '</td>';
+                if($value->score != 0){
+                	echo '<td>' . htmlentities(($value->pass) == 1 ? 'PASS' : 'NOT PASSED') . '</td>';
+                }else{
+					echo '<td>' . htmlentities('NOT GRADED') . '</td>';
+				}
                 echo '</tr>';
             }
         } else {
