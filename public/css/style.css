@@ -385,6 +385,7 @@ table.overview-table td.avatar {
     color: #fff;
     background-color: red;
     font-weight: bold;
+    visibility: hidden; /*DEBUG MODE OFF = hidden*/
 }
 
 
