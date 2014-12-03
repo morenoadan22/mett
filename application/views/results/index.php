@@ -1,6 +1,6 @@
 <div class="content">
-    <h1>Create new note</h1>
-    <h3>"Notes" are just an example of how to create, show (read), edit (update) and delete things. CRUD, you know...</h3>
+    <h1>Exam List</h1>
+    <h3>List of the exam results you now enroll in.</h3>
 
     <!-- echo out the system feedback (error and success messages) -->
     <?php $this->renderFeedbackMessages(); ?>
@@ -10,9 +10,9 @@
         <input type="submit" value='Create this note' autocomplete="off" />
     </form>
 
-    <h1 style="margin-top: 50px;">List of your notes</h1>
+    <h1 style="margin-top: 50px;">List of your previous exam.</h1>
 
-    <table>
+    <table class = "table">
     <?php
         if ($this->notes) {
             foreach($this->notes as $key => $value) {
@@ -23,7 +23,7 @@
                 echo '</tr>';
             }
         } else {
-            echo 'No notes yet. Create some !';
+            echo 'No exam registered yet. Register now!';
         }
     ?>
     </table>

@@ -42,7 +42,7 @@ class LoginModel
                                           user_email,
                                           user_password_hash,
                                           user_active,
-                                          user_account_type,
+                                          user_account_type =1,
                                           user_failed_logins,
                                           user_last_failed_login,
         								  red_id

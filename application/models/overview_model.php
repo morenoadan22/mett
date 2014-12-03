@@ -22,7 +22,7 @@ class OverviewModel
      */
     public function getAllUsersProfiles()
     {
-        $sth = $this->db->prepare("SELECT user_id, user_name, user_email, user_active, user_has_avatar FROM users");
+        $sth = $this->db->prepare("SELECT red_id, user_id, user_name, user_email, user_account_type, user_active, user_has_avatar FROM users");
         $sth->execute();
 
         $all_users_profiles = array();
@@ -31,9 +31,11 @@ class OverviewModel
             // a new object for every user. This is eventually not really optimal when it comes
             // to performance, but it fits the view style better
             $all_users_profiles[$user->user_id] = new stdClass();
+	    $all_users_profiles[$user->user_id]->user_red_id = $user->red_id;
             $all_users_profiles[$user->user_id]->user_id = $user->user_id;
             $all_users_profiles[$user->user_id]->user_name = $user->user_name;
             $all_users_profiles[$user->user_id]->user_email = $user->user_email;
+	    $all_users_profiles[$user->user_id]->user_account_type = $user->user_account_type;
 
             if (USE_GRAVATAR) {
                 $all_users_profiles[$user->user_id]->user_avatar_link =

@@ -1,13 +1,11 @@
 <head>
     <meta charset="UTF-8"/>
-	
-	<link rel="stylesheet" href="../public/css/register.css" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="../public/js/register.js"></script>	
 </head>
 
 <body>
-	
+	<div class= "container">	
 	<h1>Available Exams</h1>
 	
 	 <!-- echo out the system feedback (error and success messages) -->
@@ -40,7 +38,7 @@
 	
 	<br><br>
 		
-	<input id="buttonEnroll" type="button" value='Enroll' autocomplete="off" />
+	<input id="buttonEnroll" type="button" value='Enroll'  />
 	
-			
+	</div>
 </body>
